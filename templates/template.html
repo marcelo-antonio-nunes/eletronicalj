@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EletronicaLj</title>
+    <link rel="stylesheet" href="../static/bootstrap.css">
+</head>
+
+<body class="bg-secondary bg-opacity-25">
+    <div class="position-fixed w-100" >
+    {% block navbar %}
+        
+        <!-- inicio do navbar -->
+        <nav class="navbar navbar-expand-lg bg-primary mt-0 font-weight-bold">
+            <div class="container-fluid">
+                <a class="navbar-brand text-white" href="#">EletronicaLj</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse text-white" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active text-white" aria-current="page" href="/cadastrar">Cadastrar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="/entrada">Entrada</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="/saida">Saida</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white "href="/lista">lista</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- fim do navbar -->
+        {%endblock%}
+    </div><br><br>
+   <div>
+        {% block content %}
+        
+        {%endblock%}
+</div>
+    <script src="../static/bootstrap.js"></script>
+
+</body>
+
+</html>

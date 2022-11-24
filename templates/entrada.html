@@ -1,0 +1,20 @@
+{% extends "template.html" %}
+
+{% block content %}
+<form class="m-1  bg-opacity-25  p-2" action="/entrada" method="post">
+    
+    <div class="mb-3">
+        <label for="gaveta" class="form-label">Gaveta</label>
+        <input  type="text" class="form-control" name="gaveta" placeholder="Gaveta da peça" >
+      </div>
+      <div class="mb-3">
+        <label for="quantidade" class="form-label">quantidade</label>
+        <input type="number" class="form-control" name="quantidade" placeholder="quantidade da peças">
+      </div>
+    
+   <button type="submit" class="btn btn-primary">adicionar</button>
+
+  </form>
+
+
+{%endblock%}
