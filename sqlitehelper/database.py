@@ -12,7 +12,7 @@ class DatabaseHelper:
     
     def cria_tabela(self):
         self.cursor.execute("CREATE TABLE IF NOT EXISTS componente(\
-            gaveta VARCHAR(10) NOT NULL, tipo VARCHAR(20) NOT NULL,\
+            gaveta VARCHAR(10) NOT NULL UNIQUE, tipo VARCHAR(20) NOT NULL,\
                 codigo VARCHAR(10) NOT NULL,\
                     quantidade INTEGER NOT NULL);")
     
