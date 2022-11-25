@@ -5,6 +5,17 @@ from sqlitehelper.database import DatabaseHelper as db
 
 app = Flask(__name__)
 
+
+# ----------------------------------------------busca
+@app.route('/busca',methods=['POST'])
+def busca():
+    dt = db()
+    componente = request.form['componente']
+    lista = dt.busca_componente(componente)
+    return render_template('lista.html', lista=lista)
+    
+# ----------------------------------------------fim
+
 # ----------------------------------------------page inicial
 @app.route('/',methods=['GET',])
 def index():

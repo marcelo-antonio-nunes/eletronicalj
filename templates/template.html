@@ -10,46 +10,52 @@
 </head>
 
 <body class="bg-secondary bg-opacity-25">
-    <div class="position-fixed w-100" >
-    {% block navbar %}
-        
+    <div class="position-fixed w-100">
+        {% block navbar %}
+
+
         <!-- inicio do navbar -->
-        <nav class="navbar navbar-expand-lg bg-primary mt-0 font-weight-bold">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container-fluid">
-                <a class="navbar-brand text-white" href="#">EletronicaLj</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand" href="#">EletronicaLJ</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+                    aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse text-white" id="navbarNav">
-                    <ul class="navbar-nav">
+                <div class="collapse navbar-collapse" id="navbarScroll">
+                    <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
                         <li class="nav-item">
-                            <a class="nav-link active text-white" aria-current="page" href="/cadastrar">Cadastrar</a>
+                            <a class="nav-link active" aria-current="page" href="/">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="/entrada">Adicionar</a>
+                            <a class="nav-link active" href="/cadastrar">Novo</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="/saida">Retirar</a>
+                            <a class="nav-link active" href="/entrada">Adicionar</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white "href="/lista">lista</a>
+                            <a class="nav-link active" href="/saida">Retirar</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white "href="/">inicio</a>
+                            <a class="nav-link active" href="/lista">Listar</a>
                         </li>
                     </ul>
+                    <form class="d-flex" action="/busca" method="post">
+                        <input class="form-control me-2" type="search" placeholder="Componente" aria-label="Busca"
+                            name="componente">
+                        <button class="btn btn-outline-success" type="submit">Busca</button>
+                    </form>
                 </div>
             </div>
         </nav>
         <!-- fim do navbar -->
         {%endblock%}
     </div><br><br>
-   <div>
+    <div>
         {% block content %}
-        
+
         {%endblock%}
-</div>
+    </div>
     <script src="../static/bootstrap.js"></script>
 
 </body>

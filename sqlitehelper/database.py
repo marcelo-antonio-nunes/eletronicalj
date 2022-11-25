@@ -52,6 +52,13 @@ class DatabaseHelper:
     def listar_todos(self):
         result = self.cursor.execute("SELECT * FROM componente")
         return result.fetchall()
+    
+
+    def busca_componente(self,c):
+        result = self.cursor.execute("SELECT * FROM componente WHERE codigo LIKE ?",["%"+c+"%",])
+        return result.fetchall()
+
+
         
         
 
