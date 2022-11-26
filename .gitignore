@@ -1,4 +1,6 @@
-gavetario.*
-__pycache__
-.vscode
+*.db
+__pycache__/
+.vscode/
+__pycache__/
 *.v
+
