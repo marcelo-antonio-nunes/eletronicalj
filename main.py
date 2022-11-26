@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect
+from flask import Flask, request, render_template, redirect, url_for
 from model.componente import Componente
 from sqlitehelper.database import DatabaseHelper as db
 
@@ -30,8 +30,7 @@ def index():
 def lista():
     dt = db()
     componentes = dt.listar_todos()
-    itens = len(componentes)
-    return render_template('lista.html', lista=componentes, len=itens)
+    return render_template('lista.html', lista=componentes)
 
 # ---------------------------------------------- cria nova gaveta
 
@@ -52,11 +51,11 @@ def novo():
        componente.tipo == "" or\
        componente.codigo == "" or\
        componente.quantidade == "":
-        return redirect('/lista')
+        return redirect(url_for('lista'))
     else:
         dt = db()
         dt.cadastar_gaveta(componente)
-        return redirect('/lista')
+        return redirect(url_for('lista'))
 
 #----------------------------------------- fim
 
@@ -73,7 +72,7 @@ def adicionar():
     g = request.form["gaveta"]
     c = request.form["quantidade"]
     dt.adicionar_componentes(g, c)
-    return redirect('/lista')
+    return redirect(url_for('lista'))
 # --------------------------------------- fim
 
 # --------------------------------------- retirar componente
@@ -90,7 +89,7 @@ def retirar():
     g = request.form["gaveta"]
     c = request.form["quantidade"]
     dt.retirar_componentes(g, c)
-    return redirect("/lista")
+    return redirect(url_for('lista'))
 # ------------------------------------fim
 
 
