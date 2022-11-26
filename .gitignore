@@ -1,4 +1,4 @@
-*.db
-__pycache__/
-.vscode/
+gavetario.db
+__pycache__
+.vscode
 *.v
