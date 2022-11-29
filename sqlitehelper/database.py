@@ -57,6 +57,10 @@ class DatabaseHelper:
     def busca_componente(self,c):
         result = self.cursor.execute("SELECT * FROM componente WHERE codigo LIKE ?",["%"+c+"%",])
         return result.fetchall()
+    
+    def fechar_banco_de_dados(self):
+        self.cursor.close()
+        self.conn.close()
 
 
         

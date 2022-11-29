@@ -12,6 +12,7 @@ def busca():
     dt = db()
     componente = request.form['componente']
     lista = dt.busca_componente(componente)
+    dt.fechar_banco_de_dados()
     return render_template('lista.html', lista=lista)
     
 # ----------------------------------------------fim
@@ -21,6 +22,7 @@ def busca():
 def index():
     dt = db()
     dt.cria_tabela()
+    dt.fechar_banco_de_dados()
     return render_template('index.html')
 # ---------------------------------------------fim
 
@@ -30,6 +32,7 @@ def index():
 def lista():
     dt = db()
     componentes = dt.listar_todos()
+    dt.fechar_banco_de_dados()
     return render_template('lista.html', lista=componentes)
 
 # ---------------------------------------------- cria nova gaveta
@@ -51,10 +54,12 @@ def novo():
        componente.tipo == "" or\
        componente.codigo == "" or\
        componente.quantidade == "":
+        dt.fechar_banco_de_dados()
         return redirect(url_for('lista'))
     else:
         dt = db()
         dt.cadastar_gaveta(componente)
+        dt.fechar_banco_de_dados()
         return redirect(url_for('lista'))
 
 #----------------------------------------- fim
@@ -72,6 +77,7 @@ def adicionar():
     g = request.form["gaveta"]
     c = request.form["quantidade"]
     dt.adicionar_componentes(g, c)
+    dt.fechar_banco_de_dados()
     return redirect(url_for('lista'))
 # --------------------------------------- fim
 
@@ -89,6 +95,7 @@ def retirar():
     g = request.form["gaveta"]
     c = request.form["quantidade"]
     dt.retirar_componentes(g, c)
+    dt.fechar_banco_de_dados()
     return redirect(url_for('lista'))
 # ------------------------------------fim
 
