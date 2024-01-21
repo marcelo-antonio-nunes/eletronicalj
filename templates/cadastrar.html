@@ -1,0 +1,24 @@
+{% extends "template.html" %}
+
+{% block content %}
+<form class="m-1  bg-opacity-25  p-2"style="border-radius: 25px;", action="/novo" method="post">
+    <div class="mb-3">
+      <label for="gaveta" class="form-label">Gaveta</label>
+      <input type="text" class="form-control" name="gaveta" placeholder="Exemplo: 1">
+    </div>
+    <div class="mb-3">
+      <label for="tipo" class="form-label">Tipo</label>
+      <input type="text" class="form-control" name="tipo" placeholder="Exemplo: resistor">
+    </div>
+    <div class="mb-3">
+        <label for="codigo" class="form-label">Codigo</label>
+        <input type="text" class="form-control" name="codigo" placeholder="Exemplo: 10k">
+      </div>
+      <div class="mb-3">
+        <label for="quantidade" class="form-label">quantidade</label>
+        <input type="number" class="form-control" name="quantidade" placeholder="Exemplo: 100">
+      </div>
+      <button type="submit" class="btn btn-primary" name="acao" value="cadastrar">Cadastrar</button>
+  </form>
+
+{%endblock%}

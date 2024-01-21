@@ -1,0 +1,28 @@
+<link rel="stylesheet" href="/static/style_saida.css">
+<form class="m-1  bg-opacity-25  p-2" action="/altera_quantidade_p" method="post">    
+  <div class="mb-3">
+    <label class="form-label">Caixa:{{ registro[1] }}</label><br>
+    <label class="form-label">Marca:{{ registro[2] }}</label><br>
+    <label class="form-label">Modelo:{{ registro[3] }}</label><br>
+    <label class="form-label">Tipo:{{ registro[4] }}</label><br>
+    <label class="form-label">Codigo:{{ registro[5] }}</label><br>
+    <label class="form-label">Quantidade anterior:{{ registro[6] }}</label><br>
+    <div class="input-group">
+        <h1 id="qtdMNP">{{ registro[6] }}</h1><br>
+      <input type="hidden" name="quantidade_p" id="quantidade_p" class="form-control" value="{{ registro[6] }}">
+      <input type="hidden" name="id" id="id" class="form-control" value="{{ registro[0] }}">
+
+    </div>
+  </div>
+  <div class="mb-3">
+  </div>
+  <div>
+    <button class="btn btn-secondary float-start" id="sb" type="button" onclick="decrement_p()">-</button>
+    <button type="submit" class="btn btn-primary float-end">Salvar</button>
+
+  </div>
+
+</form>
+<script src="/static/btsmn.js"></script>
+
+

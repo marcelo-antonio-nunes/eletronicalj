@@ -1,0 +1,21 @@
+<link rel="stylesheet" href="/static/style_entrada.css">
+<form class="m-1  bg-opacity-25  p-2" action="/altera_quantidade" method="post">
+  <div class="mb-3">
+    <label class="form-label">Gaveta:{{ registro[0] }}</label><br>
+    <label class="form-label">{{ registro[1] }}:{{ registro[2] }}</label><br>
+    <label class="form-label">Quantidade anterior:{{ registro[3] }}</label><br>
+    <label for="quantidade" class="form-label">quantidade</label><br>
+    <div class="input-group">
+      <h1 id="qtdM">{{ registro[3] }}</h1><br>
+      <input type="hidden" name="quantidade" id="quantidade" class="form-control" value="{{ registro[3] }}">
+      <input type="hidden" name="id" id="id" class="form-control" value="{{ registro[4] }}">
+    </div>
+  </div>
+  <div class="mb-3">
+  </div>
+  <div>
+    <button class="btn btn-secondary float-start" id="sb" type="button" onclick="increment()">+</button>
+    <button type="submit" class="btn btn-primary float-end">Salvar</button>
+  </div>
+</form>
+<script src="/static/btsmn.js"></script>

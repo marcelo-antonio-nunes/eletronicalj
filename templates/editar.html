@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Editar Registro</title>
+<link rel="stylesheet" href="/static/style_editar.css">
+</head>
+<body>
+    <h1 style="text-align: center; margin-top: 50px;">Editar Registro</h1>
+    <form action="/atualizar" method="post">
+        <label for="gaveta">Gaveta:</label>
+        <input type="text" name="gaveta" value="{{ registro[0] }}">
+        <label for="nome">Tipo:</label>
+        <input type="text" name="tipo" id="nome" value="{{ registro[1] }}">
+        <label for="codigo">Codigo:</label>
+        <input type="text" name="codigo" id="codigo" value="{{ registro[2] }}">
+        <label for="quantidade">Quantidade:</label>
+        <input type="number" name="quantidade" id="quantidade" value="{{ registro[3] }}">
+        <input type="hidden" name="id" value="{{ registro[4] }}">
+        <button class="btn btn-primary" type="submit">Salvar</button>
+    </form>
+</body>
+</html>

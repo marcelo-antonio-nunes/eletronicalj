@@ -1,0 +1,69 @@
+{% extends "base_placas.html" %}
+
+{% block content %}
+<link rel="stylesheet" href="{{url_for('static', filename='bootstrap.css') }}">
+<link rel="stylesheet" href="{{url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="/static/style_lista.css">
+
+<div class="container-fluid ">
+    <table class="table pt-5">
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        {% for i in lista %}
+        <tr>
+            <td>Caixa : {{ i[1] }}</td>
+            <td>Marca : {{ i[2] }}</td>
+            <td>Modelo : {{ i[3] }}</td>
+            <td>Tipo : {{ i[4] }}</td>
+            <td>Codigo : {{ i[5] }}</td>
+            <td>Quantidade : {{ i[6] }}</td>
+            <td>
+                <form action="/seleciona_p" method="post">
+                    <input type="hidden" name="id" value="{{ i[0] }}">
+                    <button type="submit" class="btn btn-success" name="acao" value="adicionar_p">ADICIONAR</button>
+                    <button type="submit" class="btn btn-dark" name="acao" value="retirar_p">RETIRAR</button>
+                    <button type="submit" class="btn btn-primary" name="acao" value="editar_p">editar</button>
+                </form>
+            </td>
+            <td>
+                <!-- Adicione esta linha para exibir a imagem com a função openImageModal() -->
+                <img src="/static/foto/{{ i[7] }}" alt="Preview da Foto" style="max-width: 100px; max-height: 100px;"
+                    onclick="openImageModal('/static/foto/{{ i[7] }}')">
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<!-- Modal para exibir a imagem em tamanho maior -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <img id="modalImage" src="" alt="Imagem em tamanho maior" style="max-width: 100%; height: auto;">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{{url_for('static', filename='bootstrap.js')}}"></script>
+<script>
+    // Função para exibir o modal ao clicar na imagem
+    function openImageModal(imageUrl) {
+        // Encontrar o modal na página
+        var modal = new bootstrap.Modal(document.getElementById('imageModal'));
+
+        // Atualizar a imagem no modal com a URL fornecida
+        var modalImage = document.getElementById('modalImage');
+        modalImage.src = imageUrl;
+
+        // Exibir o modal
+        modal.show();
+    }
+</script>
+
+{% endblock %}

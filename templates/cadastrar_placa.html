@@ -1,0 +1,84 @@
+
+
+{% extends "base_placas.html" %}
+
+{% block content %}
+<link rel="stylesheet" href="{{url_for('static',filename='bootstrap.css') }}">
+<link rel="stylesheet" href="{{url_for('static',filename='style.css') }}">
+
+<form class="bg-light p-4 rounded" action="/nova_placa" method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label for="caixa" class="form-label">Caixa</label>
+        <input type="text" class="form-control" name="caixa" placeholder="Exemplo: 1">
+    </div>
+    <div class="mb-3">
+        <label for="marca" class="form-label">Marca</label>
+        <input type="text" class="form-control" name="marca" placeholder="Exemplo: Samsung">
+    </div>
+    <div class="mb-3">
+        <label for="modelo" class="form-label">Modelo</label>
+        <input type="text" class="form-control" name="modelo" placeholder="Exemplo: Pl51f4000ag">
+    </div>
+    <div class="mb-3">
+        <label for="tipo" class="form-label">Tipo</label>
+        <input type="text" class="form-control" name="tipo" placeholder="Exemplo: Placa Fonte">
+    </div>
+    <div class="mb-3">
+        <label for="codigo" class="form-label">Código</label>
+        <input type="text" class="form-control" name="codigo" placeholder="Exemplo: BN44-00678A">
+    </div>
+    <div class="mb-3">
+        <label for="quantidade" class="form-label">Quantidade</label>
+        <input type="number" class="form-control" name="quantidade" placeholder="Exemplo: 2">
+    </div>
+   
+    <div class="mb-3">
+      <label for="foto" class="form-label">Foto</label>
+      <div class="input-group">
+          <label class="input-group-btn">
+              <span class="btn btn-primary">
+                  Escolher Foto <input type="file" style="display: none;" name="file" id="file" onchange="previewFile()">
+              </span>
+          </label>
+          <input type="text" class="form-control" id="foto" name="foto" placeholder="Nome da Foto" readonly>
+      </div>
+  </div>
+  <div class="mb-3">
+      <img src="" alt="Preview da Foto" id="preview" class="img-thumbnail" style="max-width: 200px; max-height: 200px;">
+  </div>
+  
+  <div class="mb-3">
+      <button type="submit" class="btn btn-primary">Cadastrar</button>
+  </div>
+  
+  <script src="../static/bootstrap.js"></script>
+  <script>
+      function previewFile() {
+          var preview = document.getElementById('preview');
+          var fileInput = document.getElementById('file');
+          var fotoInput = document.getElementById('foto');
+          var file = fileInput.files[0];
+  
+          var reader = new FileReader();
+  
+          reader.onloadend = function () {
+              if (file) {
+                  preview.src = reader.result;
+                  fotoInput.value = file.name;
+              } else {
+                  preview.src = "";
+                  fotoInput.value = "";
+              }
+          };
+  
+          if (file) {
+              reader.readAsDataURL(file);
+          } else {
+              preview.src = "";
+              fotoInput.value = "";
+          }
+      }
+  </script>
+  
+
+{% endblock %}

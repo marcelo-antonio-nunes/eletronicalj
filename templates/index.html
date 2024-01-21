@@ -1,0 +1,35 @@
+{% extends "template.html" %}
+<style>
+    button.custom-button {
+        color: yellow;
+        background-color: green;
+        box-shadow: 2px 2px black;
+        border: none;
+        padding: 10px 20px;
+      }
+
+</style>
+  
+{% block content %}
+<div class="container-fluid text-center p-3 opacity-5">
+    <img src="../static/image/images.jpeg" class="img-fluid w-50" alt="...">
+    <br>
+    <p class="text-center" style="font-size: clamp(1em, 1em + 1vw, 2.5em);">
+        Controle de estoque de <strong>componentes</strong> eletronicos!
+    </p>
+    <p class="text-center" style="font-size: clamp(1em, 1em + 1vw, 9px);">
+        <strong>EletronicaLJ </strong>especializada em consertos de tvs sons microondas etc..!
+        <form action="/placas" method="post">
+            <button class="custom-button" type="submit" style="background-color: green; color: yellow; border: none; border-radius: 20px; box-shadow: 2px 2px 4px black;">Placas</button>
+
+        </form>
+    </p>
+</div>
+
+
+    
+
+    
+    
+   
+{%endblock%}

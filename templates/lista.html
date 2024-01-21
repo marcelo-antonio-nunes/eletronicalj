@@ -1,0 +1,34 @@
+{% extends "template.html" %}
+
+{% block content %}
+<link rel="stylesheet" href="/static/style_lista.css">
+<div class="container-fluid ">
+
+    <table class="table pt-5">
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        {% for i in lista %}
+        <tr>
+            <td>Gavete : {{ i[0] }}</td>
+            <td>Tipo : {{ i[1] }}</td>
+            <td>Codigo : {{ i[2] }}</td>
+            <td>quantidade : {{ i[3] }}</td>
+            <td>
+                <form action="/seleciona" method="post">
+                    <input type="hidden" name="id" value="{{ i[4] }}">
+                    <button type="submit" class="btn btn-success" name="acao" value="adicionar">ADICIONAR</button>
+                    <button type="submit" class="btn btn-dark" name="acao" value="retirar">RETIRAR</button>
+                    <button type="submit" class="btn btn-primary" name="acao" value="editar">EDITAR</button>
+
+                </form>
+            </td>
+        </tr>
+        {%endfor%}
+    </table>
+
+</div>
+{%endblock%}
