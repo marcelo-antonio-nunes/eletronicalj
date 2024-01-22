@@ -2,7 +2,7 @@ from flask import Flask, request, render_template, redirect, url_for, flash
 from model.componente import Componente
 from model.placa import Placa
 from sqlitehelper.database import DatabaseHelper as db
-
+import sqlite3
 
 
 app = Flask(__name__)
@@ -218,6 +218,69 @@ def atualizar_caixa():
         return render_template('erro_modal.html')
     return redirect('lista_placas')
 #====================================================
+
+#-------- Led -------------------------------------
+
+# Configuração do SQLite
+DATABASE = 'banco_de_dados/gavetario.db'
+
+# Função para conectar ao banco de dados
+def connect_db():
+    return sqlite3.connect(DATABASE)
+
+# Rota para a página de cadastro
+@app.route('/cadastrar_led', methods=['GET', 'POST'])
+def cadastrar_led():
+    if request.method == 'POST':
+        modelo_tv = request.form['modelo_tv']
+        quantidade = request.form['quantidade']
+        
+        # Insere os dados no banco de dados
+        connection = connect_db()
+        cursor = connection.cursor()
+        cursor.execute("INSERT INTO led (modelo_tv, quantidade) VALUES (?, ?)", (modelo_tv, quantidade))
+        connection.commit()
+        connection.close()
+
+    return render_template('cadastrar_led.html')
+
+# Rota para a página de busca
+@app.route('/buscar_led', methods=['GET', 'POST'])
+def buscar():
+    if request.method == 'POST':
+        modelo_tv = request.form['modelo_tv']
+
+        # Busca no banco de dados pelo modelo de TV
+        connection = connect_db()
+        cursor = connection.cursor()
+        cursor.execute("SELECT * FROM led WHERE modelo_tv=?", (modelo_tv,))
+        result = cursor.fetchall()
+        connection.close()
+
+        if result:
+            return render_template('buscar_led.html', result=result)
+        else:
+            return render_template('buscar_led.html', not_found=True)
+
+    return render_template('buscar_led.html')
+
+# Rota para a página de baixa ou adição
+
+# Rota para editar o LED
+@app.route('/editar_led/<int:id>', methods=['POST'])
+def editar_led(id):
+    if request.method == 'POST':
+        nova_quantidade = request.form['quantidade']
+
+        # Atualiza a quantidade no banco de dados
+        connection = connect_db()
+        cursor = connection.cursor()
+        cursor.execute("UPDATE led SET quantidade = ? WHERE id = ?", (nova_quantidade, id))
+        connection.commit()
+        connection.close()
+
+    # Redireciona de volta para a página de busca após a edição
+    return redirect(url_for('buscar'))
 
 
 if __name__ == '__main__':

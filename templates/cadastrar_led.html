@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar LED</title>
+    <!-- Adicione os links para o Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Cadastrar LED</h1>
+        <form method="POST" action="{{ url_for('cadastrar_led') }}">
+            <div class="form-group">
+                <label for="modelo_tv">Modelo TV:</label>
+                <input type="text" class="form-control" name="modelo_tv" required>
+            </div>
+            <div class="form-group">
+                <label for="quantidade">Quantidade:</label>
+                <input type="number" class="form-control" name="quantidade" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+            <button type="button" class="btn btn-primary" >
+                <a class="bt" aria-current="page" href="/">Início</a>
+            </button>
+    </form>
+    <style>
+        .bt{
+            color: azure;
+        }
+    </style>
+        </form>
+    </div>
+
+    <!-- Adicione os scripts do Bootstrap e do jQuery (necessário para alguns recursos do Bootstrap) -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

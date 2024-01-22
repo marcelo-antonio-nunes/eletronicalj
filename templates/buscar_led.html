@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar LED</title>
+    <!-- Adicione os links para o Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Buscar LED</h1>
+        <form method="POST" action="{{ url_for('buscar') }}">
+            <div class="form-group">
+                <label for="modelo_tv">Modelo TV:</label>
+                <input type="text" class="form-control" name="modelo_tv" required>
+            </div>
+           
+                <button type="submit" class="btn btn-primary">Buscar</button>
+                
+                <button type="button" class="btn btn-primary" >
+                    <a class="bt" aria-current="page" href="/">Início</a>
+                </button>
+        </form>
+        <style>
+            .bt{
+                color: azure;
+            }
+        </style>
+
+        {% if result %}
+    <ul class="list-group mt-3">
+        {% for i in result %}
+            <li class="list-group-item">
+                {{ i[0] }}: {{ i[1] }}
+                <button type="button" class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#editModal{{ loop.index }}">Editar</button>
+            </li>
+
+            <!-- Modal para edição -->
+            <div class="modal fade" id="editModal{{ loop.index }}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel{{ loop.index }}" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editModalLabel{{ loop.index }}">Editar LED - {{ i[0] }}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                           <!-- Formulário de edição -->
+<form method="POST" action="{{ url_for('editar_led', id=i[2]) }}">
+    <div class="form-group">
+        <label for="quantidade">Quantidade:</label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <button type="button" class="btn btn-outline-secondary" onclick="updateQuantity('add')">+</button>
+            </div>
+            <input type="number" class="form-control" name="quantidade" id="quantidade" value="{{ i[1] }}" required>
+            <div class="input-group-append">
+                <button type="button" class="btn btn-outline-secondary" onclick="updateQuantity('subtract')">-</button>
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+</form>
+
+<!-- Script para atualizar a quantidade -->
+<script>
+    function updateQuantity(action) {
+        var inputQuantidade = document.getElementById('quantidade');
+        var quantidade = parseInt(inputQuantidade.value);
+
+        if (action === 'add') {
+            quantidade++;
+        } else if (action === 'subtract' && quantidade > 0) {
+            quantidade--;
+        }
+
+        inputQuantidade.value = quantidade;
+    }
+</script>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        
+    </ul>
+    {% elif not_found %}
+    <p class="mt-3 text-danger">Modelo não encontrado.</p>
+    {% endif %}
+    
+    
+</div>
+
+    <!-- Adicione os scripts do Bootstrap e do jQuery (necessário para alguns recursos do Bootstrap) -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
