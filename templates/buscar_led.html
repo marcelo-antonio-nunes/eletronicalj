@@ -61,12 +61,16 @@
             </div>
         </div>
     </div>
+    <div>
+        <input type="text" class="form-control" name="modelo_tv" id="modelo_tv" value="{{ i[0] }}" required>
+    </div>
     <button type="submit" class="btn btn-primary">Salvar Alterações</button>
 </form>
 
 <!-- Script para atualizar a quantidade -->
 <script>
     function updateQuantity(action) {
+        var inputQuantidade = document.getElementById('quantidade');
         var inputQuantidade = document.getElementById('quantidade');
         var quantidade = parseInt(inputQuantidade.value);
 

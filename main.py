@@ -271,11 +271,14 @@ def buscar():
 def editar_led(id):
     if request.method == 'POST':
         nova_quantidade = request.form['quantidade']
+        novo_modelo_tv = request.form['modelo_tv']
 
         # Atualiza a quantidade no banco de dados
         connection = connect_db()
         cursor = connection.cursor()
-        cursor.execute("UPDATE led SET quantidade = ? WHERE id = ?", (nova_quantidade, id))
+        # cursor.execute("UPDATE led SET quantidade = ?, modelo_tv= ?,  WHERE id = ?" (nova_quantidade,novo_modelo_tv, id))
+        cursor.execute("UPDATE led SET quantidade = ?, modelo_tv = ? WHERE id = ?", (nova_quantidade, novo_modelo_tv, id))
+
         connection.commit()
         connection.close()
 
