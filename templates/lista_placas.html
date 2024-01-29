@@ -43,6 +43,12 @@
 <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn btn-secondary" onclick="zoomImage('out')">Zoom Out</button>
+                <button type="button" class="btn btn-secondary" onclick="zoomImage('in')">Zoom In</button>
+                <span id="zoomPercentage">100%</span>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">Fechar</button>
+            </div>
             <div class="modal-body">
                 <img id="modalImage" src="" alt="Imagem em tamanho maior" style="max-width: 100%; height: auto;">
             </div>
@@ -52,18 +58,47 @@
 
 <script src="{{url_for('static', filename='bootstrap.js')}}"></script>
 <script>
+    var currentZoom = 100; // Porcentagem do zoom atual
+
+    // Função para ajustar o zoom da imagem no modal
+    function zoomImage(action) {
+        var modalImage = document.getElementById('modalImage');
+        var zoomPercentageElement = document.getElementById('zoomPercentage');
+
+        if (action === 'in' && currentZoom < 100) {
+            // Zoom In
+            currentZoom += 10;
+        } else if (action === 'out' && currentZoom > 10) {
+            // Zoom Out
+            currentZoom -= 10;
+        }
+
+        // Aplicar o zoom à largura da imagem
+        modalImage.style.width = currentZoom + '%';
+        zoomPercentageElement.textContent = currentZoom + '%';
+    }
+
     // Função para exibir o modal ao clicar na imagem
     function openImageModal(imageUrl) {
         // Encontrar o modal na página
         var modal = new bootstrap.Modal(document.getElementById('imageModal'));
 
+        // Restaurar o zoom padrão ao abrir o modal
+        currentZoom = 100;
+
         // Atualizar a imagem no modal com a URL fornecida
         var modalImage = document.getElementById('modalImage');
         modalImage.src = imageUrl;
+        modalImage.style.width = currentZoom + '%'; // Definir a largura inicial
+
+        // Atualizar a porcentagem do zoom
+        var zoomPercentageElement = document.getElementById('zoomPercentage');
+        zoomPercentageElement.textContent = currentZoom + '%';
 
         // Exibir o modal
         modal.show();
     }
 </script>
+
 
 {% endblock %}

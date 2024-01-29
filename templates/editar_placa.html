@@ -6,22 +6,37 @@
 <link rel="stylesheet" href="/static/style_editar.css">
 </head>
 <body>
-    <h1 style="text-align: center; margin-top: 50px;">Editar Registro</h1>
-    <form action="/atualizar_caixa" method="post">
-        <label for="caixa">Caixa:</label>
-        <input type="text" name="caixa" value="{{ registro[1] }}">
-        <label for="marca">Marca:</label>
-        <input type="text" name="marca" id="marca" value="{{ registro[2] }}">
-        <label for="modelo">Modelo:</label>
-        <input type="text" name="modelo" id="modelo" value="{{ registro[3] }}">
-        <label for="tipo">Tipo:</label>
-        <input type="text" name="tipo" id="tipo" value="{{ registro[4] }}">
-        <label for="codigo">Codigo:</label>
-        <input type="text" name="codigo" id="codigo" value="{{ registro[5] }}">
-        <label for="quantidade">Quantidade:</label>
-        <input type="number" name="quantidade" id="quantidade" value="{{ registro[6] }}">
-        <input type="hidden" name="id" value="{{ registro[0] }}">
-        <button class="btn btn-primary" type="submit">Salvar</button>
-    </form>
+   <h1 style="text-align: center; margin-top: 50px;">Editar Registro</h1>
+   <form action="/atualizar_caixa" method="post" enctype="multipart/form-data">
+    <label for="caixa">Caixa:</label>
+    <input type="text" name="caixa" value="{{ registro[1] }}">
+    <label for="marca">Marca:</label>
+    <input type="text" name="marca" id="marca" value="{{ registro[2] }}">
+    <label for="modelo">Modelo:</label>
+    <input type="text" name="modelo" id="modelo" value="{{ registro[3] }}">
+    <label for="tipo">Tipo:</label>
+    <input type="text" name="tipo" id="tipo" value="{{ registro[4] }}">
+    <label for="codigo">Codigo:</label>
+    <input type="text" name="codigo" id="codigo" value="{{ registro[5] }}">
+    <label for="quantidade">Quantidade:</label>
+    <input type="number" name="quantidade" id="quantidade" value="{{ registro[6] }}">
+    <label for="foto">Foto:</label>
+    <div style="display: flex; align-items: center;">
+        <input type="text" name="foto" id="foto" readonly style="flex-grow: 1;">
+        <button type="button" onclick="document.getElementById('fileInput').click()">Escolher Foto</button>
+        <input type="file" id="fileInput" style="display: none;" accept=".jpg, .jpeg, .png, .bmp, .webp" onchange="displayFileName()">
+    </div>
+    <input type="hidden" name="id" value="{{ registro[0] }}">
+    <button class="btn btn-primary" type="submit">Salvar</button>
+</form>
+
+<script>
+    function displayFileName() {
+        var input = document.getElementById('fileInput');
+        var fileNameDisplay = document.getElementById('foto');
+        fileNameDisplay.value = input.files[0].name;
+    }
+</script>
+
 </body>
 </html>

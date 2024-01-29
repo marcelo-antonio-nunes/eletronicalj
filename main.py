@@ -210,7 +210,9 @@ def atualizar_caixa():
         request.form["modelo"],
         request.form["tipo"],
         request.form["codigo"],
-        request.form["quantidade"])
+        request.form["quantidade"],
+        request.form["foto"])
+        
     dt = db()
     result = dt.editar_caixa(id, placas)
     if result == False:

@@ -80,8 +80,8 @@ class DatabaseHelper:
             
     @db_execute
     def editar_caixa(self, id_placa, p:Type[Placa]):
-        return "UPDATE placas SET caixa='{}', marca='{}', modelo='{}',tipo='{}', codigo='{}', quantidade='{}' WHERE id='{}'"\
-        .format(p.caixa, p.marca, p.modelo, p.tipo, p.codigo, p.quantidade, id_placa)
+        return "UPDATE placas SET caixa='{}', marca='{}', modelo='{}',tipo='{}', codigo='{}', quantidade='{}', foto='{}' WHERE id='{}'"\
+        .format(p.caixa, p.marca, p.modelo, p.tipo, p.codigo, p.quantidade, p.foto, id_placa)
     
     def busca_placas(self):
         con = sqlite3.connect("banco_de_dados/gavetario.db")
