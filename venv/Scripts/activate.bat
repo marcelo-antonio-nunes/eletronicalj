@@ -8,7 +8,11 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
+<<<<<<< HEAD
 set VIRTUAL_ENV=C:\eletronicalj\venv
+=======
+set VIRTUAL_ENV=C:\Users\marce\Desktop\apagar\eletronicalj\venv
+>>>>>>> 9c5d9847508a2ddffa0f1a76185e422f0ece0441
 
 if not defined PROMPT set PROMPT=$P$G
 
