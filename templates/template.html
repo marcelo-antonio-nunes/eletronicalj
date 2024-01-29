@@ -46,6 +46,9 @@
                         <input class="form-control me-2" type="search" placeholder="Componente" aria-label="Busca"
                             name="componente">
                         <button class="btn btn-outline-success" id="bb" type="submit">Busca</button>
+                        <!-- Adicione este botão ao seu HTML -->
+                    <button class="btn btn-outline-danger" id="btnBackup">Backup</button>
+
                     </form>
                 </div>
             </div>
@@ -59,7 +62,23 @@
         {%endblock%}
     </div>
     <script src="../static/bootstrap.js"></script>
-
+    <script>
+        document.getElementById('btnBackup').addEventListener('click', function() {
+            var senha = prompt('Digite a senha secreta:');
+        
+            if (senha !== null && senha !== '') {
+                // Envia a senha para o servidor usando AJAX
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '/backup', true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.onload = function() {
+                    alert(xhr.responseText);
+                };
+                xhr.send('senha=' + encodeURIComponent(senha));
+            }
+        });
+        </script>
+        
 </body>
 
 </html>

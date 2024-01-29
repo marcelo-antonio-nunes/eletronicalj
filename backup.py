@@ -3,6 +3,7 @@ import shutil
 import time
 import tkinter as tk
 from tkinter import filedialog, font, messagebox
+from datetime import datetime
 
 class EletronicaLj:
     def __init__(self, master):
@@ -31,11 +32,13 @@ class EletronicaLj:
         save_dir = filedialog.askdirectory(title="Selecione a pasta para salvar o backup")
 
         # Gera o nome do arquivo de backup
-        timestamp = time.strftime("%Y%m%d-%H%M%S")
+        timestamp = time.strftime("%d-%m-%Y %H%M%S")
+        # timestamp = datetime.now().strftime("%d/%m/%Y-%H:%M:%S")
         backup_filename = f"gavetario_{timestamp}.db"
 
         # Copia o arquivo de banco de dados para a pasta de backup com o novo nome
         source_file = os.path.join("banco_de_dados", "gavetario.db")
+
         dest_file = os.path.join(save_dir, backup_filename)
         shutil.copy(source_file, dest_file)
 

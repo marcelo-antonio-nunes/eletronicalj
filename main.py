@@ -2,6 +2,7 @@ from flask import Flask, request, render_template, redirect, url_for, flash
 from model.componente import Componente
 from model.placa import Placa
 from sqlitehelper.database import DatabaseHelper as db
+import subprocess
 import sqlite3
 
 
@@ -286,6 +287,23 @@ def editar_led(id):
 
     # Redireciona de volta para a página de busca após a edição
     return redirect(url_for('buscar'))
+#&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+def realizar_backup():
+    # Substitua 'caminho_para_backup.py' pelo caminho real do seu script de backup
+    subprocess.run(["python", "backup.py"])
+
+# Rota para lidar com a solicitação de backup
+@app.route('/backup', methods=['POST'])
+def backup():
+    senha_digitada = request.form.get('senha')
+
+    # Verifica se a senha está correta
+    if senha_digitada == 'eletronica@leo':
+        realizar_backup()
+        return 'Backup realizado com sucesso!'
+    else:
+        return 'Senha incorreta. Backup não realizado.'
 
 
 if __name__ == '__main__':
