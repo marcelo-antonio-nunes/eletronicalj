@@ -1,7 +1,7 @@
 {% extends "template.html" %}
 
 {% block content %}
-<form class="m-1  bg-opacity-25  p-2"style="border-radius: 25px;", action="/novo" method="post">
+<form class="m-1  bg-opacity-25  p-2"style="border-radius: 25px;", action="/novo" method="post" enctype="multipart/form-data">
     <div class="mb-3">
       <label for="gaveta" class="form-label">Gaveta</label>
       <input type="text" class="form-control" name="gaveta" placeholder="Exemplo: 1">
@@ -18,7 +18,51 @@
         <label for="quantidade" class="form-label">quantidade</label>
         <input type="number" class="form-control" name="quantidade" placeholder="Exemplo: 100">
       </div>
-      <button type="submit" class="btn btn-primary" name="acao" value="cadastrar">Cadastrar</button>
-  </form>
+  <div class="mb-3">
+    <label for="fotoC" class="form-label">Foto</label>
+    <div class="input-group">
+        <label class="input-group-btn">
+            <span class="btn btn-primary">
+                Escolher Foto <input type="file" style="display: none;" name="file" id="file" onchange="previewFile()">
+            </span>
+        </label>
+        <input type="text" class="form-control" id="fotoC" name="fotoC" placeholder="Nome da Foto" readonly>
+    </div>
+</div>
+<div class="mb-3">
+    <img src="" alt="Preview da FotoC" id="preview" class="img-thumbnail" style="max-width: 80px; max-height: 80px;">
+</div>
 
+<div class="mb-3">
+
+    <button type="submit" class="btn btn-primary" name="acao" value="cadastrar">Cadastrar</button>
+</div>
+
+<script src="../static/bootstrap.js"></script>
+  <script>
+      function previewFile() {
+          var preview = document.getElementById('preview');
+          var fileInput = document.getElementById('file');
+          var fotoInput = document.getElementById('fotoC');
+          var file = fileInput.files[0];
+
+          var reader = new FileReader();
+          reader.onloadend = function () {
+              if (file) {
+                  preview.src = reader.result;
+                  fotoInput.value = file.name;
+              } else {
+                  preview.src = "";
+                  fotoInput.value = "";
+              }
+          };
+
+          if (file) {
+              reader.readAsDataURL(file);
+          } else {
+              preview.src = "";
+              fotoInput.value = "";
+          }
+      }
+  </script>
 {%endblock%}

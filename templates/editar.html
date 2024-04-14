@@ -16,8 +16,21 @@
         <input type="text" name="codigo" id="codigo" value="{{ registro[2] }}">
         <label for="quantidade">Quantidade:</label>
         <input type="number" name="quantidade" id="quantidade" value="{{ registro[3] }}">
+        <label for="foto">Foto:</label>
+        <div style="display: flex; align-items: center;">
+            <input type="text" name="foto" id="foto" readonly style="flex-grow: 1;">
+            <button type="button" onclick="document.getElementById('fileInput').click()">Escolher Foto</button>
+            <input type="file" id="fileInput" style="display: none;" accept=".jpg, .jpeg, .png, .bmp, .webp" onchange="displayFileName()">
+        </div>
         <input type="hidden" name="id" value="{{ registro[4] }}">
         <button class="btn btn-primary" type="submit">Salvar</button>
     </form>
+    <script>
+        function displayFileName() {
+            var input = document.getElementById('fileInput');
+            var fileNameDisplay = document.getElementById('foto');
+            fileNameDisplay.value = input.files[0].name;
+        }
+    </script>
 </body>
 </html>

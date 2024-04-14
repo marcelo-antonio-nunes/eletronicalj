@@ -51,7 +51,9 @@ def novo():
             request.form["gaveta"],
             request.form["tipo"],
             request.form["codigo"],
-            request.form["quantidade"])
+            request.form["quantidade"],
+            request.form["fotoC"])
+        print(f"Foto -> {request.form['fotoC']}")
         if componente.gaveta == "" or\
                 componente.tipo == "" or\
                 componente.codigo == "" or\
@@ -61,7 +63,6 @@ def novo():
             dt = db()
             result = dt.cadastar_gaveta(componente)
             if result == False:
-                flash("Ja existe essa gaveta!")
                 return render_template('erro_modal.html')
             dt.listar_todos()
             return redirect(url_for('lista'))
@@ -114,7 +115,8 @@ def atualizar():
         request.form["gaveta"],
         request.form["tipo"],
         request.form["codigo"],
-        request.form["quantidade"])
+        request.form["quantidade"],
+        request.form["foto"])
     dt = db()
     result = dt.editar_componentes(id, componente)
     if result == False:

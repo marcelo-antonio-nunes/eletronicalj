@@ -22,8 +22,8 @@ class DatabaseHelper:
     
     @db_execute
     def cadastar_gaveta(self, c:Type[Componente]):
-        return "INSERT INTO componente(gaveta, tipo, codigo, quantidade)VALUES('{}','{}','{}','{}')"\
-            .format(c.gaveta, c.tipo, c.codigo, c.quantidade)
+        return "INSERT INTO componente(gaveta, tipo, codigo, quantidade, foto)VALUES('{}','{}','{}','{}', '{}')"\
+            .format(c.gaveta, c.tipo, c.codigo, c.quantidade, c.foto)
     
     @db_execute
     def editar_quant(self, id, quantidade):
@@ -33,8 +33,8 @@ class DatabaseHelper:
     
     @db_execute
     def editar_componentes(self, id_gaveta, c:Type[Componente]):
-        return "UPDATE componente SET gaveta='{}', tipo='{}', codigo='{}', quantidade='{}' WHERE id='{}'"\
-        .format(c.gaveta, c.tipo, c.codigo, c.quantidade, id_gaveta)
+        return "UPDATE componente SET gaveta='{}', tipo='{}', codigo='{}', quantidade='{}', foto='{}' WHERE id='{}'"\
+        .format(c.gaveta, c.tipo, c.codigo, c.quantidade,c.foto, id_gaveta)
         
     def listar_todos(self):
         con = sqlite3.connect("banco_de_dados/gavetario.db")
